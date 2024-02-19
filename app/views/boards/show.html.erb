@@ -56,6 +56,21 @@
     <th>Expires on</th>
   </tr>
 
+  <% @the_board.post.each do |individual_posts| %>
+
+  <tr>
+
+       <% if individual_posts.expires_on > Date.today %>
+          <td><%= individual_posts.title %></td>
+          <td><%= individual_posts.body %></td>
+          <td><%= individual_posts.created_at.strftime("%b %e, %Y") %></td>
+          <td><%= individual_posts.expires_on.strftime("%b %e, %Y") %></td>
+      <% end %>
+
+  </tr>
+
+  <% end %>
+
 </table>
 
 <h2>Expired posts</h2>
@@ -67,6 +82,18 @@
     <th>Posted on</th>
     <th>Expired on</th>
   </tr>
+
+  <% @the_board.post.each do |individual_posts| %>
+       <tr>
+       <% if individual_posts.expires_on < Date.today %>
+          <td><%= individual_posts.title %></td>
+          <td><%= individual_posts.body %></td>
+          <td><%= individual_posts.created_at.strftime("%b %e, %Y") %></td>
+          <td><%= individual_posts.expires_on.strftime("%b %e, %Y") %></td>
+      <% end %>
+      </tr>
+  <% end %>
+
 
 </table>
 
