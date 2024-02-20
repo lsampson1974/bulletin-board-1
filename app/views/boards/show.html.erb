@@ -34,7 +34,7 @@
       Expires on
     </label>
 
-    <input type="date" id="expires_on_box" name="query_expires_on">
+    <input type="date" id="expires_on_box" name="query_expires_on" value="<%= Date.today.strftime('%Y-%m-%d') %>">
   </div>
 
   <input type="hidden" id="board_id_box" name="query_board_id" value="<%= @the_board.id %>">
@@ -60,7 +60,7 @@
 
   <tr>
 
-       <% if individual_posts.expires_on > Date.today %>
+       <% if individual_posts.expires_on >= Date.today %>
           <td><%= individual_posts.title %></td>
           <td><%= individual_posts.body %></td>
           <td><%= individual_posts.created_at.strftime("%b %e, %Y") %></td>
